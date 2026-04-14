@@ -30,13 +30,22 @@ import akribiz from "./company/akribiz.png";
 import journIQ from "./JournIQ.png";
 
 
+
 import bitlink from "./bitlink.png";
 import atithi from "./atithi.png";
 import live_link from "./live_link.png";
+import chessGame from "./chess.png";
+import matchMate from "./match_mate.png";
+import jira from "./jira.png";
 
 import crowd_control from "./crowd_control.png";
+import Heart from "./Heart.png"
+import Typo from "./Typo.png"
+import Assess from "./Assess.png"
 
 export {
+  Heart,
+  jira,
   akribiz,
   bluestock,
   plaksha,
@@ -45,6 +54,8 @@ export {
   atithi,
   crowd_control,
   journIQ,
+  chessGame,
+  matchMate,
   logo,
   backend,
   creator,
@@ -66,6 +77,8 @@ export {
   tailwind,
   typescript,
   threejs,
+  Typo,
+  Assess,
   
 
   

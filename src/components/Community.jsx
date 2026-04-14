@@ -9,7 +9,7 @@ import { community } from "../constants";
 const CommunityCard = ({ index, title, company_name, icon, iconBg, date, points }) => (
   <motion.div
     variants={fadeIn("up", "spring", index * 0.3, 0.75)}
-    className="bg-[#1d1836] p-8 rounded-2xl w-full hover:scale-[1.02] transition-transform duration-300"
+    className="community-card p-8 rounded-2xl w-full hover:scale-[1.02] transition-transform duration-300"
   >
     <div className="flex items-start gap-4 mb-6">
       <div 
@@ -22,7 +22,7 @@ const CommunityCard = ({ index, title, company_name, icon, iconBg, date, points 
         <h3 className="text-white font-bold text-[20px] sm:text-[24px] mb-1">
           {title}
         </h3>
-        <p className="text-[#915EFF] font-semibold text-[16px] sm:text-[18px] mb-2">
+        <p className="community-company font-semibold text-[16px] sm:text-[18px] mb-2">
           {company_name}
         </p>
         <p className="text-secondary text-[14px] font-medium">
@@ -46,8 +46,8 @@ const CommunityCard = ({ index, title, company_name, icon, iconBg, date, points 
 
 const Community = () => {
   return (
-    <div className="mt-12 bg-[#100d25] rounded-[20px]">
-      <div className={`bg-[#1d1836] rounded-2xl ${styles.padding} min-h-[300px]`}>
+    <div className="community-shell mt-12 rounded-[20px]">
+      <div className={`community-header rounded-2xl ${styles.padding} min-h-[300px]`}>
         <motion.div variants={textVariant()}>
           <p className={styles.sectionSubText}>Making an impact</p>
           <h2 className={styles.sectionHeadText}>Community Involvement.</h2>

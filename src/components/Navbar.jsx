@@ -5,7 +5,7 @@ import { styles } from "../styles";
 import { navLinks } from "../constants";
 import { logo, menu, close } from "../assets";
 
-const Navbar = () => {
+const Navbar = ({ theme, toggleTheme }) => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -24,6 +24,24 @@ const Navbar = () => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const isLightTheme = theme === "light";
+
+  const ThemeToggle = ({ mobile = false }) => (
+    <button
+      type='button'
+      onClick={toggleTheme}
+      className={`theme-toggle ${mobile ? "theme-toggle-mobile" : ""}`}
+      aria-label={`Switch to ${isLightTheme ? "dark" : "light"} theme`}
+      title={`Switch to ${isLightTheme ? "dark" : "light"} theme`}
+    >
+      <span className='theme-toggle-track'>
+        <span className={`theme-toggle-thumb ${isLightTheme ? "light" : "dark"}`}>
+          {isLightTheme ? "L" : "D"}
+        </span>
+      </span>
+    </button>
+  );
 
   return (
     <nav
@@ -49,28 +67,36 @@ const Navbar = () => {
           </p>
         </Link>
 
-        <ul className='list-none hidden sm:flex flex-row gap-10'>
-          {navLinks.map((nav) => (
-            <li
-              key={nav.id}
-              className={`${
-                active === nav.title ? "text-white" : "text-secondary"
-              } hover:text-white text-[18px] font-medium cursor-pointer`}
-              onClick={() => setActive(nav.title)}
-            >
-              <a href={`#${nav.id}`}>{nav.title}</a>
-            </li>
-          ))}
-        </ul>
+        <div className='hidden sm:flex items-center gap-6'>
+          <ul className='list-none flex flex-row gap-10'>
+            {navLinks.map((nav) => (
+              <li
+                key={nav.id}
+                className={`${
+                  active === nav.title ? "text-white" : "text-secondary"
+                } hover:text-white text-[18px] font-medium cursor-pointer`}
+                onClick={() => setActive(nav.title)}
+              >
+                <a href={`#${nav.id}`}>{nav.title}</a>
+              </li>
+            ))}
+          </ul>
 
-        <div className='sm:hidden flex flex-1 justify-end items-center'>
+          <ThemeToggle />
+        </div>
+
+        <div className='sm:hidden flex flex-1 justify-end items-center gap-4'>
+          <ThemeToggle mobile />
+
           <img
             src={toggle ? close : menu}
             alt='menu'
             className='w-[28px] h-[28px] object-contain'
             onClick={() => setToggle(!toggle)}
           />
+        </div>
 
+        <div className='sm:hidden'>
           <div
             className={`${
               !toggle ? "hidden" : "flex"

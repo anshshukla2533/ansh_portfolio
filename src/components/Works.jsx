@@ -1,5 +1,4 @@
 import React from "react";
-import Tilt from "react-tilt";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
@@ -13,70 +12,61 @@ const ProjectCard = ({
   index,
   name,
   description,
-  tags,
   image,
   source_code_link,
   live_demo_link,
 }) => {
   return (
-    <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
-      <Tilt
-        options={{
-          max: 45,
-          scale: 1,
-          speed: 450,
-        }}
-        className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full'
-      >
-        <div className='relative w-full h-[230px]'>
+    <motion.div
+      variants={fadeIn("up", "spring", index * 0.25, 0.75)}
+      className='sm:w-[360px] w-full'
+    >
+      <article className='project-card h-full rounded-3xl overflow-hidden'>
+        <div className='relative w-full h-[220px] overflow-hidden'>
           <img
             src={image}
             alt='project_image'
-            className='w-full h-full object-cover rounded-2xl'
+            className='w-full h-full object-cover project-card-image'
           />
 
-          <div className='absolute inset-0 flex justify-end gap-2 m-3 card-img_hover'>
-            <div
-              onClick={() => window.open(source_code_link, "_blank")}
-              className='black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer'
-            >
-              <img
-                src={github}
-                alt='source code'
-                className='w-1/2 h-1/2 object-contain'
-              />
-            </div>
-            {live_demo_link && (
-              <div
-                onClick={() => window.open(live_demo_link, "_blank")}
-                className='black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer'
-              >
-                <img
-                  src={live_link}
-                  alt='live link'
-                  className='w-1/2 h-1/2 object-contain'
-                />
-              </div>
-            )}
+          <div className='project-card-overlay' />
+
+          <div className='absolute top-4 left-4'>
+            <span className='project-chip'>Project</span>
           </div>
         </div>
 
-        <div className='mt-5'>
-          <h3 className='text-white font-bold text-[24px]'>{name}</h3>
-          <p className='mt-2 text-secondary text-[14px]'>{description}</p>
-        </div>
-
-        <div className='mt-4 flex flex-wrap gap-2'>
-          {tags.map((tag) => (
-            <p
-              key={`${name}-${tag.name}`}
-              className={`text-[14px] ${tag.color}`}
-            >
-              #{tag.name}
+        <div className='p-6 flex flex-col gap-5 h-[calc(100%-220px)]'>
+          <div>
+            <h3 className='text-white font-bold text-[24px] leading-tight'>{name}</h3>
+            <p className='mt-3 text-secondary text-[14px] leading-7 project-description'>
+              {description}
             </p>
-          ))}
+          </div>
+
+          <div className='project-footer mt-auto'>
+            <span className='project-footer-label'>Built for production-minded work</span>
+            <div className='project-footer-links'>
+              <button
+                type='button'
+                onClick={() => window.open(source_code_link, "_blank")}
+                className='project-link-button'
+              >
+                Source
+              </button>
+              {live_demo_link && (
+                <button
+                  type='button'
+                  onClick={() => window.open(live_demo_link, "_blank")}
+                  className='project-link-button project-link-button-primary'
+                >
+                  Live Demo
+                </button>
+              )}
+            </div>
+          </div>
         </div>
-      </Tilt>
+      </article>
     </motion.div>
   );
 };
@@ -102,7 +92,7 @@ const Works = () => {
         </motion.p>
       </div>
 
-      <div className='mt-20 flex flex-wrap gap-7'>
+      <div className='mt-16 flex flex-wrap gap-7'>
         {projects.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} {...project} />
         ))}
