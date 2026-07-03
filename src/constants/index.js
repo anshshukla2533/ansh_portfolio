@@ -1,5 +1,8 @@
 import { c } from "maath/dist/index-43782085.esm";
 import {
+  ashoka,
+  nighatech,
+  ccc,
   mobile,
   backend,
   creator,
@@ -30,6 +33,7 @@ import {
   Heart,
   Typo,
   Assess,
+  sen
 } from "../assets";
 
 export const navLinks = [
@@ -53,17 +57,18 @@ export const navLinks = [
 
 const services = [
   {
-    title: "Web Developer",
+    title: "Full Stack Developer",
     icon: web,
   },
   {
-    title: "Frontend Developer",
+    title: "Machine Learning",
     icon: mobile,
   },
   {
     title: "Backend Developer",
     icon: backend,
   },
+
   {
     title: "Community Leader",
     icon: creator,
@@ -126,31 +131,50 @@ const technologies = [
 ];
 
 const experiences = [
-  {
-    title: " Software Development Intern",
-    company_name: "BlueStock FinTech",
-    icon: bluestock,
+
+ 
+    {
+    title: "Product Engineering with AI Intern",
+    company_name: "CCC Digital India Private Limited",
+    icon: ccc,
     iconBg: "#383E56",
-    date: "April 2025 - May 2025",
+    date: "June 2026 - Present",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Building LearnFlow AI, an AI-powered learning platform designed to reduce context switching and enhance student learning workflows.",
+      "Implementing Retrieval-Augmented Generation (RAG) pipelines, LangGraph agent workflows, and LangFuse observability for AI-powered features.",
+      "Integrating Groq and Ollama LLMs with the MERN stack to deliver personalized learning experiences.",
+      "Developing AI-driven solutions using modern LLM technologies, prompt engineering, and scalable full-stack architectures.",
     ],
   },
-  {
-    title: " Data Analyst Intern",
-    company_name: "Akribiz pvt ltd",
-    icon: akribiz,
-    iconBg: "#E6DEDD",
-    date: "June 2022 - July 2022",
-    points: [
-      "Developed automated data processing pipelines in Python, handling datasets with 50k+ records",
-      "Implemented data visualization using Matplotlib to streamline reporting.",
-      "Reduced manual reporting time by 60% through automation."
-    ],
-  },
+    {
+  title: "AI/ML Intern",
+  company_name: "NighaTech Global",
+  icon: nighatech,
+  iconBg: "#383E56",
+  date: "May 2026 - June 2026",
+  points: [
+    "Developed a waste classification system using Machine Learning and Computer Vision techniques to automatically categorize waste into different waste classes.",
+    "Collected, cleaned, and preprocessed image datasets, performed data augmentation, and trained deep learning models for accurate waste classification.",
+    "Evaluated model performance using industry-standard metrics and optimized accuracy through experimentation with different deep learning architectures and hyperparameters.",
+    "Collaborated with the AI team to build and improve scalable computer vision solutions following machine learning best practices.",
+  ],
+},
+ 
+ 
+ {
+  title: "Young Scholars Programme",
+  company_name: "Ashoka University",
+  icon: ashoka,
+  iconBg: "#383E56",
+  date: "June 2024",
+  points: [
+    "Selected for the fully funded Young Scholars Programme in Technology, Data & Computer Science.",
+    "Completed an intensive academic programme focused on problem-solving, computational thinking, and data-driven approaches through hands-on projects.",
+    "Collaborated with peers from diverse academic backgrounds in an interdisciplinary, on-campus learning environment.",
+    "Strengthened analytical thinking, teamwork, and technical problem-solving skills through interactive workshops and project-based learning.",
+  ],
+},
+
   {
     title: "Young Technology Scholar (Summer Programme)",
     company_name: "Plaskha University",
@@ -162,6 +186,19 @@ const experiences = [
       "Built a 2D game using Python and Pygame, implementing gameplay mechanics such as event handling, collision detection, and scoring logic",
       "Gained hands-on experience through collaborative workshops in programming, game design, and computational problem-solving",
 
+    ],
+  },
+    
+  {
+    title: " Data Analyst Intern",
+    company_name: "Akribiz pvt ltd",
+    icon: akribiz,
+    iconBg: "#E6DEDD",
+    date: "June 2022 - July 2022",
+    points: [
+      "Developed automated data processing pipelines in Python, handling datasets with 50k+ records",
+      "Implemented data visualization using Matplotlib to streamline reporting.",
+      "Reduced manual reporting time by 60% through automation."
     ],
   },
 
@@ -222,6 +259,33 @@ const projects = [
     live_demo_link: "https://journ-iq-93xs.vercel.app/",
   },
   {
+  name: "SentinelAI - AI-Powered Observability Platform",
+  description:
+    "Built a full-stack observability platform that enables organizations to monitor servers and distributed systems in real time through a lightweight cross-platform monitoring agent deployed via CLI as a systemd service. The platform continuously collects system metrics, service health, incidents, and logs, providing centralized dashboards for infrastructure monitoring. To proactively reduce downtime, I implemented AI-driven anomaly detection and predictive analytics that process 500+ metrics per minute to forecast potential failures 5–10 minutes in advance with 85%+ accuracy, while integrating automated incident management, intelligent root cause analysis, and alerting for faster issue resolution.",
+  tags: [
+    {
+      name: "python",
+      color: "blue-text-gradient",
+    },
+    {
+      name: "react",
+      color: "green-text-gradient",
+    },
+    {
+      name: "fastapi",
+      color: "pink-text-gradient",
+    },
+    {
+      name: "machine-learning",
+      color: "blue-text-gradient",
+    },
+  ],
+  image: sen,
+  source_code_link: "https://github.com/anshshukla2533/SentinelAI",
+  live_demo_link: "",
+},
+  
+  {
     name: "Multiplayer Chess Game",
     description: "I built a real-time multiplayer chess application using Next.js, Node.js, Express, and Socket.IO, enabling seamless live gameplay with instant move synchronization for over 100 users. The application enforces complete chess logic, including legal move validation, check and checkmate detection, and also features a single-player mode with an AI opponent powered by algorithmic decision-making. I designed a responsive and interactive user interface with dynamic board rendering and real-time updates, reducing move latency by 40% and significantly enhancing the overall user experience.",
     tags: [
@@ -243,6 +307,7 @@ const projects = [
     live_demo_link: "https://multiplayer-chess-game-nu.vercel.app/",
 
   },
+  
 
   {
     name: "Assess.Ai",
@@ -251,6 +316,7 @@ const projects = [
     image: Assess,
     source_code_link: "https://github.com/anshshukla2533/Asses.ai"
   },
+
   
   {
     name: "Jira Ticket Evaluator",
