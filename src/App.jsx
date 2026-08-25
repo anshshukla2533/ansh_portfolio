@@ -1,39 +1,62 @@
-import { useEffect, useState } from "react";
-import { BrowserRouter } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Experience from "./components/Experience";
+import Projects from "./components/Projects";
+import Skills from "./components/Skills";
+import Recognition from "./components/Recognition";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+import { sections } from "./data/portfolioData";
 
-import { About, Contact, Experience, Hero, Navbar, Tech, Works, StarsCanvas } from "./components";
-import Community from "./components/Community";
-
-const App = () => {
-  const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "dark");
+function App() {
+  const [active, setActive] = useState("experience");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    document.body.classList.toggle("light-theme", theme === "light");
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+    const nodes = sections
+      .map((section) => document.getElementById(section.id))
+      .filter(Boolean);
 
-  const toggleTheme = () => {
-    setTheme((currentTheme) => (currentTheme === "dark" ? "light" : "dark"));
-  };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visible) {
+          setActive(visible.target.id);
+        }
+      },
+      {
+        rootMargin: "-25% 0px -40% 0px",
+        threshold: [0.15, 0.3, 0.5],
+      }
+    );
+
+    nodes.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <BrowserRouter>
-      <div className='relative z-0 bg-primary'>
-        <div className='hero-shell'>
-          <Navbar theme={theme} toggleTheme={toggleTheme} />
-          <Hero />
-        </div>
-        <About />
+    <div className="min-h-screen flex flex-col font-sans">
+      <Navbar
+        active={active}
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+      />
+
+      <main id="top" className="max-w-6xl mx-auto px-5 sm:px-10 lg:px-14 w-full flex-grow">
+        <Hero />
         <Experience />
-        <Tech />
-        <Works />
-        <Community />
-        <div className='relative z-0'>
-          <Contact />
-          <StarsCanvas />
-        </div>
-      </div>
-    </BrowserRouter>
+        <Projects />
+        <Skills />
+        <Recognition />
+        <Contact />
+      </main>
+
+      <Footer />
+    </div>
   );
 }
 

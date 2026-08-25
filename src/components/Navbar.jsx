@@ -1,128 +1,68 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { sections } from "../data/portfolioData";
 
-import { styles } from "../styles";
-import { navLinks } from "../constants";
-import { logo, menu, close } from "../assets";
-
-const Navbar = ({ theme, toggleTheme }) => {
-  const [active, setActive] = useState("");
-  const [toggle, setToggle] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      if (scrollTop > 100) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const isLightTheme = theme === "light";
-
-  const ThemeToggle = ({ mobile = false }) => (
-    <button
-      type='button'
-      onClick={toggleTheme}
-      className={`theme-toggle ${mobile ? "theme-toggle-mobile" : ""}`}
-      aria-label={`Switch to ${isLightTheme ? "dark" : "light"} theme`}
-      title={`Switch to ${isLightTheme ? "dark" : "light"} theme`}
-    >
-      <span className='theme-toggle-track'>
-        <span className={`theme-toggle-thumb ${isLightTheme ? "light" : "dark"}`}>
-          {isLightTheme ? "L" : "D"}
-        </span>
-      </span>
-    </button>
-  );
-
+export default function Navbar({ active, mobileMenuOpen, setMobileMenuOpen }) {
   return (
-    <nav
-      className={`${
-        styles.paddingX
-      } w-full flex items-center py-5 fixed top-0 z-20 ${
-        scrolled ? "bg-primary" : "bg-transparent"
-      }`}
-    >
-      <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
-        <Link
-          to='/'
-          className='flex items-center gap-2'
-          onClick={() => {
-            setActive("");
-            window.scrollTo(0, 0);
-          }}
+    <header className="sticky top-0 z-50 w-full border-b border-[rgba(70,57,36,0.12)] bg-[#f7f1e7]/90 backdrop-blur-md transition-all">
+      <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-4 flex items-center justify-between gap-4">
+        <a
+          className="flex items-center gap-2 group text-2xl hover:scale-110 transition-transform"
+          href="#top"
+          aria-label="Ansh Shukla Home"
         >
-          <img src={logo} alt='logo' className='w-9 h-9 object-contain' />
-          <p className='text-white text-[18px] font-bold cursor-pointer flex '>
-            Ansh Shukla &nbsp;
-            <span className='sm:block hidden'></span>
-          </p>
-        </Link>
+          <span role="img" aria-label="eyes icon">👀</span>
+        </a>
 
-        <div className='hidden sm:flex items-center gap-6'>
-          <ul className='list-none flex flex-row gap-10'>
-            {navLinks.map((nav) => (
-              <li
-                key={nav.id}
-                className={`${
-                  active === nav.title ? "text-white" : "text-secondary"
-                } hover:text-white text-[18px] font-medium cursor-pointer`}
-                onClick={() => setActive(nav.title)}
-              >
-                <a href={`#${nav.id}`}>{nav.title}</a>
-              </li>
-            ))}
-          </ul>
+        { }
+        <nav className="hidden md:flex items-center gap-6 sm:gap-8" aria-label="Desktop navigation">
+          {sections.map((section) => (
+            <a
+              key={section.id}
+              href={`#${section.id}`}
+              className={`font-mono text-xs tracking-widest uppercase transition-all duration-150 ${active === section.id
+                  ? "text-[#3954ff] font-bold border-b-2 border-[#3954ff] pb-0.5"
+                  : "text-ink/80 hover:text-[#3954ff]"
+                }`}
+            >
+              {section.label}
+            </a>
+          ))}
+        </nav>
 
-          <ThemeToggle />
-        </div>
-
-        <div className='sm:hidden flex flex-1 justify-end items-center gap-4'>
-          <ThemeToggle mobile />
-
-          <img
-            src={toggle ? close : menu}
-            alt='menu'
-            className='w-[28px] h-[28px] object-contain'
-            onClick={() => setToggle(!toggle)}
-          />
-        </div>
-
-        <div className='sm:hidden'>
-          <div
-            className={`${
-              !toggle ? "hidden" : "flex"
-            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
-          >
-            <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
-              {navLinks.map((nav) => (
-                <li
-                  key={nav.id}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === nav.title ? "text-white" : "text-secondary"
-                  }`}
-                  onClick={() => {
-                    setToggle(!toggle);
-                    setActive(nav.title);
-                  }}
-                >
-                  <a href={`#${nav.id}`}>{nav.title}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        { }
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden p-2 rounded-lg text-ink hover:bg-black/5 focus:outline-none"
+          aria-label="Toggle navigation menu"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {mobileMenuOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+        </button>
       </div>
-    </nav>
-  );
-};
 
-export default Navbar;
+      { }
+      {mobileMenuOpen && (
+        <div className="md:hidden border-t border-[rgba(70,57,36,0.12)] bg-[#f7f1e7] px-6 py-4 space-y-2 shadow-lg">
+          {sections.map((section) => (
+            <a
+              key={section.id}
+              href={`#${section.id}`}
+              onClick={() => setMobileMenuOpen(false)}
+              className={`block px-4 py-2.5 rounded-lg font-mono text-xs tracking-widest uppercase transition-colors ${active === section.id
+                  ? "bg-[#3954ff] text-white font-bold"
+                  : "text-ink hover:bg-black/5"
+                }`}
+            >
+              {section.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </header>
+  );
+}

@@ -1,108 +1,111 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
+import React from "react";
+import { socialLinks } from "../data/portfolioData";
 
-import { styles } from "../styles";
-import { ComputersCanvas } from "./canvas";
-
-const Hero = () => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const scrollToTop = () => {
-    const aboutElement = document.getElementById('about');
-    if (aboutElement) {
-      aboutElement.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
+export default function Hero() {
   return (
-    <section className={`relative w-full h-screen mx-auto`}>
-      <div
-        className={`absolute inset-0 top-[120px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5 z-10 pointer-events-auto`}
-      >
-        <div className='flex flex-col justify-center items-center mt-5'>
-          <div className='w-5 h-5 rounded-full bg-[#915EFF]' />
-          <div className='w-1 sm:h-80 h-40 violet-gradient' />
+    <section className="py-6 sm:py-10 lg:py-12 border-b border-[rgba(70,57,36,0.14)] grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+      
+      {}
+      <div className="lg:col-span-7 flex flex-col items-start">
+        
+        {}
+        <h1 className="text-3xl sm:text-4xl lg:text-[50px] font-serif font-bold text-ink leading-[1.14] tracking-tight">
+          Hey, I&apos;m <span className="text-[#3954ff]">Ansh</span>.
+          <br />
+          I build software and
+          <br />
+          ship AI systems.
+        </h1>
+
+        {}
+        <p className="font-mono text-xs sm:text-sm text-muted mt-4 mb-1.5">
+          B.Tech CSE @ SRM University AP.
+        </p>
+
+        {}
+        <p className="font-mono text-[11px] uppercase tracking-widest text-muted flex items-center gap-1.5 mb-6">
+          <span className="text-[#3954ff]">📍</span> ANDHRA PRADESH, INDIA
+        </p>
+
+        {}
+        <div className="flex flex-wrap items-center gap-2.5 mb-4">
+          {socialLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target={link.download ? undefined : "_blank"}
+              rel={link.download ? undefined : "noreferrer"}
+              download={link.download || undefined}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[rgba(70,57,36,0.2)] bg-white/40 hover:bg-white text-ink text-xs font-mono tracking-wider uppercase transition-all hover:-translate-y-0.5 shadow-2xs"
+            >
+              <span className="text-muted">
+                {link.label === "GitHub" && (
+                  <svg className="w-3.5 h-3.5 inline" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                )}
+                {link.label === "LinkedIn" && (
+                  <svg className="w-3.5 h-3.5 inline" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                )}
+                {link.label === "Codolio" && (
+                  <svg className="w-3.5 h-3.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                )}
+                {link.label === "Email" && (
+                  <svg className="w-3.5 h-3.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 002-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                )}
+              </span>
+              <span>{link.label}</span>
+            </a>
+          ))}
         </div>
 
-        <div>
-          <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className='text-[#915EFF]'>Ansh</span>
-          </h1>
-          <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            Aspiring Software Developer
-          </p>
+        {}
+        <div className="flex flex-wrap items-center gap-3">
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center px-5 py-3 rounded-lg bg-[#1f1c1a] text-white font-mono text-xs font-semibold uppercase tracking-wider shadow-sm hover:bg-[#3954ff] transition-all hover:-translate-y-0.5"
+          >
+            BOOK A CALL ↗
+          </a>
+          <a
+            href="https://codolio.com/profile/anshshukla2533"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center px-5 py-3 rounded-lg border border-[rgba(70,57,36,0.22)] bg-white/40 hover:bg-white text-ink font-mono text-xs font-semibold uppercase tracking-wider transition-all hover:-translate-y-0.5"
+          >
+            CODOLIO PROFILE ↗
+          </a>
+        </div>
 
-          {/* Social Icons */}
-          <div className='flex gap-4 mt-6'>
-            <a
-              href='https://github.com/anshshukla2533'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='w-12 h-12 rounded-full bg-[#915EFF] flex items-center justify-center hover:bg-[#7c3aed] transition-all duration-300 hover:scale-110 cursor-pointer'
-            >
-              <svg
-                className='w-6 h-6 text-white'
-                fill='currentColor'
-                viewBox='0 0 24 24'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <path d='M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z' />
-              </svg>
-            </a>
+      </div>
 
-            <a
-              href='https://www.linkedin.com/in/ansh-shukla-72262b378/'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='w-12 h-12 rounded-full bg-[#915EFF] flex items-center justify-center hover:bg-[#7c3aed] transition-all duration-300 hover:scale-110 cursor-pointer'
-            >
-              <svg
-                className='w-6 h-6 text-white'
-                fill='currentColor'
-                viewBox='0 0 24 24'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <path d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z' />
-              </svg>
-            </a>
+      {}
+      <div className="lg:col-span-5 flex justify-center lg:justify-end">
+        <div className="relative max-w-[290px] sm:max-w-[340px] lg:max-w-[360px] w-full p-3.5 sm:p-4 bg-white shadow-paper rounded-xs border border-[rgba(87,65,34,0.18)] transform rotate-2 hover:rotate-0 transition-transform duration-300">
+          {}
+          <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-[#e5dfd3]/90 border border-[rgba(70,57,36,0.2)] shadow-xs rounded-xs z-10" />
+          
+          <div className="relative aspect-[4/5] rounded-xs overflow-hidden border border-black/10 bg-stone-100 max-h-[380px] sm:max-h-[420px]">
+            <img
+              className="w-full h-full object-cover object-[50%_15%]"
+              src="/profile.jpg"
+              alt="Ansh Shukla portrait"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'flex';
+              }}
+            />
+            <div className="hidden absolute inset-0 bg-gradient-to-br from-slate-800 to-indigo-900 text-white flex-col items-center justify-center p-6 text-center">
+              <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center text-2xl font-mono mb-3">AS</div>
+              <h3 className="font-serif text-lg font-bold">Ansh Shukla</h3>
+              <p className="text-xs font-mono text-white/80 mt-1">Product Engineer with AI</p>
+            </div>
+          </div>
+
+          <div className="mt-3 text-center font-serif italic text-xs sm:text-sm text-muted">
+            Andhra Pradesh, 2026
           </div>
         </div>
       </div>
 
-      <ComputersCanvas />
-
-      <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center z-20'>
-        <button
-          onClick={scrollToTop}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          style={{
-            width: '35px',
-            height: '64px',
-            transform: isHovered ? 'scale(1.3)' : 'scale(1)',
-            borderColor: isHovered ? '#915EFF' : 'rgba(255, 255, 255, 0.5)',
-            boxShadow: isHovered ? '0 0 20px rgba(145, 94, 255, 0.6)' : 'none',
-          }}
-          className='rounded-3xl border-4 flex justify-center items-start p-2 bg-transparent transition-all duration-300 cursor-pointer'
-        >
-          <motion.div
-            animate={{
-              y: [24, 0, 24],
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              repeatType: "loop",
-            }}
-            style={{
-              backgroundColor: isHovered ? '#915EFF' : 'rgba(255, 255, 255, 0.5)',
-            }}
-            className='w-3 h-3 rounded-full mb-1 transition-colors duration-300'
-          />
-        </button>
-      </div>
     </section>
   );
-};
-
-export default Hero;
+}
